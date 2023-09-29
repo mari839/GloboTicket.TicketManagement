@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events
+namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList
 {
     internal class EventListVm
     {
         public Guid EventId { get; set; }
-        public string Name { get; set; } 
+        public string Name { get; set; }
         public DateTime Date { get; set; }
         public string? ImageUrl { get; set; }
     }

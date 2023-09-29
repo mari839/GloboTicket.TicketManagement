@@ -8,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events
+namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
     internal class GetEventDetailQueryHandler : IRequestHandler<GetEventDetailQuery, EventDetailVm>
     {
         private readonly IAsyncRepository<Event> _eventRepository;
-        private readonly IAsyncRepository<Domain.Entities.Category> _categoryRepository;
+        private readonly IAsyncRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
 
-        public GetEventDetailQueryHandler(IMapper mapper, IAsyncRepository<Event> eventRepository,IAsyncRepository<Domain.Entities.Category> categoryRepository)
+        public GetEventDetailQueryHandler(IMapper mapper, IAsyncRepository<Event> eventRepository, IAsyncRepository<Category> categoryRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
