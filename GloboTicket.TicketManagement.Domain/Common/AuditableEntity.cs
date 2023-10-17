@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Domain.Common
 {
-    internal class AuditableEntity
+    public class AuditableEntity
     {
         public string? CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
