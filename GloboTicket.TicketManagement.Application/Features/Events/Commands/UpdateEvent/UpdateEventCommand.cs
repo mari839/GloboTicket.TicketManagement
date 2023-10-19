@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
 {
-    internal class UpdateEventCommand : IRequest
+    public class UpdateEventCommand : IRequest
     {
         public Guid EventId { get; set; }
         public string Name { get; set; } = string.Empty;

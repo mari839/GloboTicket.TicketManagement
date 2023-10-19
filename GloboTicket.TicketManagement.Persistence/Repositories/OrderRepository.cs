@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
-    internal class OrderRepository : BaseRepository<Order>, IOrderRepository
+    public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         public OrderRepository(GloboTicketDbContext globoTicketDbContext) : base(globoTicketDbContext)
         {

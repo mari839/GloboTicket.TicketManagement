@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
 {
-    internal class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand>
+    public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;

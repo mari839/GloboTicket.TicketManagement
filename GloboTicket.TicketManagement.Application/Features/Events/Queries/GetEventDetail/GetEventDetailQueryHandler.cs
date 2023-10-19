@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
-    internal class GetEventDetailQueryHandler : IRequestHandler<GetEventDetailQuery, EventDetailVm>
+    public class GetEventDetailQueryHandler : IRequestHandler<GetEventDetailQuery, EventDetailVm>
     {
         private readonly IAsyncRepository<Event> _eventRepository;
         private readonly IAsyncRepository<Category> _categoryRepository;

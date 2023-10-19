@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
 {
-    internal class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Guid>
+    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Guid>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;

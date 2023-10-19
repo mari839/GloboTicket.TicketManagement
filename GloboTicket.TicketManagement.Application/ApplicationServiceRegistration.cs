@@ -1,12 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application
 {
@@ -14,9 +8,18 @@ namespace GloboTicket.TicketManagement.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
+            try
+            {
+                services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+                services.AddMediatR(Assembly.GetExecutingAssembly());
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                foreach (Exception inner in ex.LoaderExceptions)
+                {
+                    throw new Exception(inner.Message);
+                }
+            }
             return services;
         }
     }

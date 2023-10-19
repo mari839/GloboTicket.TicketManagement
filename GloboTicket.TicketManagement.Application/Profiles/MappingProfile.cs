@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Profiles
 {
-    internal class MappingProfile : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {

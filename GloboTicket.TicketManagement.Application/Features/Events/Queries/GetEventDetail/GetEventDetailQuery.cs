@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
-    internal class GetEventDetailQuery : IRequest<EventDetailVm>
+    public class GetEventDetailQuery : IRequest<EventDetailVm>
     {
         public Guid Id { get; set; } // which event detail i need to fetch, what user must enter
     }

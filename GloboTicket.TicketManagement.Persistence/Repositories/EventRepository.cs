@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
-    internal class EventRepository : BaseRepository<Event>, IEventRepository
+    public class EventRepository : BaseRepository<Event>, IEventRepository
     {
         public EventRepository(GloboTicketDbContext context) : base(context) { }
 

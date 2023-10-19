@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
-    internal class EventDetailVm
+    public class EventDetailVm
     {
         public Guid EventId { get; set; }
         public string Name { get; set; } = string.Empty;

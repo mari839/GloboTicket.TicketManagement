@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList
 {
-    internal class GetCategoriesListQuery : IRequest<List<CategoryListVm>>
+    public class GetCategoriesListQuery : IRequest<List<CategoryListVm>>
     {
     }
 }

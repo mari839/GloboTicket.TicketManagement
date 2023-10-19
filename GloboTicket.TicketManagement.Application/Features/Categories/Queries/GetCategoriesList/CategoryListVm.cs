@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList
 {
-    internal class CategoryListVm
+    public class CategoryListVm
     {
         public Guid CategoryId { get; set; }
         public string Name { get; set; } = string.Empty;
