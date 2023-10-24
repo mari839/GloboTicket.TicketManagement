@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList
 {
-    internal class GetEventListQuery : IRequest<List<EventListVm>>
+    public class GetEventListQuery : IRequest<List<EventListVm>>
     {
     }
 }

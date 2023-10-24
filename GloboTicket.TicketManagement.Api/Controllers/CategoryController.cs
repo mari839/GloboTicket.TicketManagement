@@ -2,12 +2,11 @@
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboTicket.TicketManagement.Api.Controllers
 {
-    public class CategoryController : ControllerBase
+    public class CategoryController : Controller
     {
         private readonly IMediator _mediator;
 
@@ -25,7 +24,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             return Ok(dtos);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("allwithevents", Name = "GetCategoriesWithEvents")]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]

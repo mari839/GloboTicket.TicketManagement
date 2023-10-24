@@ -2,8 +2,10 @@
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace GloboTicket.TicketManagement.Api
 {
@@ -11,14 +13,17 @@ namespace GloboTicket.TicketManagement.Api
     {
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
+            AddSwagger(builder.Services);
+
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
 
-            builder.Services.AddControllers();
+            builder.Services.AddHttpContextAccessor();
 
+            builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
 
             builder.Services.AddCors(options =>
             {
@@ -29,17 +34,22 @@ namespace GloboTicket.TicketManagement.Api
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
+
+            if(app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "GloboTIcket Ticket Management API");
+                });
+            }
+
             app.UseHttpsRedirection();
 
-            app.UseRouting();
 
-            
 
             app.UseCors("Open");
 
-            
-            app.UseSwagger();
-            app.UseSwaggerUI();
 
             //app.MapDefaultControllerRoute();
 
@@ -48,6 +58,20 @@ namespace GloboTicket.TicketManagement.Api
             return app;
         }
 
+        private static void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "GloboTicket Ticket Management API",
+                });
+                //c.OperationFilter<FileResultContentTypeOperationFilter>();
+            });
+        }
+
+
         public static async Task ResetDatabaseAsync(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();
@@ -55,7 +79,7 @@ namespace GloboTicket.TicketManagement.Api
             try
             {
                 var context = scope.ServiceProvider.GetService<GloboTicketDbContext>();
-                if(context != null)
+                if (context != null)
                 {
                     await context.Database.EnsureDeletedAsync();
                     await context.Database.MigrateAsync();
