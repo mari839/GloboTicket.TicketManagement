@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,9 @@ namespace GloboTicket.TicketManagement.Api
 
             builder.Services.AddControllers();
 
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
@@ -29,7 +33,15 @@ namespace GloboTicket.TicketManagement.Api
 
             app.UseRouting();
 
+            
+
             app.UseCors("Open");
+
+            
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            //app.MapDefaultControllerRoute();
 
             app.MapControllers();
 

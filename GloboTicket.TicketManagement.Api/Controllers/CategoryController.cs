@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GloboTicket.TicketManagement.Api.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -21,6 +21,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
         public async Task<ActionResult<List<CategoryListVm>>> GetAllCategories()
         {
             var dtos = await _mediator.Send(new GetCategoriesListQuery());
+
             return Ok(dtos);
         }
 
