@@ -12,9 +12,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CreateCategoryCommandResponse>
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IAsyncRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
-        public CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateCategoryCommandHandler(IAsyncRepository<Category> categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
@@ -27,7 +27,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
             var validator = new CreateCategoryCommandValidator();
             var validationResult = await validator.ValidateAsync(request); //validate request
 
-            //if there is any inalid input we return list of errors
+            //if there is any invalid input we return list of errors
             if(validationResult.Errors.Count > 0)
             {
                 createCategoryCommandResponse.Success = false;
