@@ -65,7 +65,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
         }
 
         [HttpGet("export", Name = "ExportEvents")]
-        //[FileResultContentType("text/csv")]
+        [FileResultContentType("text/csv")]
         public async Task<FileResult> ExportEvents()
         {
             var fileDto = await _mediator.Send(new GetEventsExportQuery());
